@@ -3,6 +3,11 @@ var first = true;
 var lines = [];
 var idx = 0;
 
+var glyphX = 6;
+var glyphY = 11;
+
+var gridSize = 30;
+
 var $canvasContainer = $('#line-canvas');
 canvas = document.getElementById('canvas');
 
@@ -24,8 +29,8 @@ $(canvas).mousedown(function (e) {
 	var y = e.offsetY;
 
 	// go from mouse coordinates to grid position
-	x = (Math.round(x / 30) * 30) - 10;
-	y = (Math.round(y / 30) * 30) - 10;
+	x = (Math.round(x / gridSize) * gridSize) - 10;
+	y = (Math.round(y / gridSize) * gridSize) - 10;
 
 	// If first Line, we do a MoveTo command.
 	if (first) {
@@ -71,10 +76,10 @@ function buildGrid(){
 	var dW = $(document).width();
 	var dH = $(document).height();
 
-	// On the x-axis: start at 20, stop at width-10, every 30px:
-	for(var x = 20; x < dW - 10; x += 30){
-		// On the y-axis: start at 20, stop at height-10, every 30px:
-		for(var y = 20; y < dH - 10; y += 30){
+	// On the x-axis: start at 20, stop at width-10, every gridSizepx:
+	for(var x = 20; x < gridSize * glyphX; x += gridSize){
+		// On the y-axis: start at 20, stop at height-10, every gridSizepx:
+		for(var y = 20; y < gridSize * glyphY; y += gridSize){
 			// Make a 10 by 10px circle with a gray out-line
 			paper.ellipse(x, y, 10, 10).attr({
 				stroke: '#cdcdcd'
