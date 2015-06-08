@@ -50,21 +50,7 @@ $(canvas).mousedown(function (e) {
 	lastX = x;
 });
 
-$(document).on({
-	// When you press space, stop this line
-	keypress: function(e){
-		if(e.which === 32){
-			lines[idx] = paper.path().attr({
-				'stroke-width': 5,
-				'stroke-linecap': 'square'
-			});
-
-			first = !first;
-		}
-	}
-});
-
-$(document).on({
+$(canvas).on({
 	dblclick: function(e){
 		// When you double-click, stop this line
 		lines[idx] = paper.path().attr({
